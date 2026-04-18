@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MOODDROP
 
-## Getting Started
+MOODDROP is a mobile-first emotional intelligence MVP built for a hackathon demo. It lets users check in with mood, intensity, text, song context, and optional voice notes, then routes the input through a risk gate before returning either a warm reflective insight or a calmer spiral-mode support view.
 
-First, run the development server:
+## What is in this MVP
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Guest-session entry with secure cookie-backed private spaces
+- Daily check-in flow with mood tap, intensity, text, song context, and in-browser voice-note recording
+- Fast first-use flow with a 60-second quick check-in as the default path
+- Conservative risk classification before normal insight generation
+- Dedicated spiral mode screen for elevated-risk or direct spiral entry
+- Weekly Mood Replay Studio with emotional arcs, themes, triggers, what helped, celebration note, a share-safe summary, and exactly 3 therapy-prep bullets
+- Dashboard with recent drops, latest insight snapshot, replay preview, and neutral consistency framing
+- Privacy-safe share summaries for insights and replay outputs
+- Typed service layer, Zod validation, Drizzle schema, and optional OpenAI + Supabase integrations
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Safety defaults
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- MOODDROP always discloses that it is a supportive reflection tool, not a therapist, diagnosis engine, or emergency service
+- Elevated-risk language routes to spiral mode before casual reflective output
+- The copy layer blocks therapist claims, diagnosis claims, crisis-counseling claims, and dependency-forming language
+- Healthy re-engagement is insight-driven, not streak-driven
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Local run
 
-## Learn More
+1. Install dependencies: `cmd /c npm.cmd install`
+2. Copy `.env.example` to `.env.local` if you want production integrations
+3. Start the app: `cmd /c npm.cmd run dev`
+4. Open `http://localhost:3000`
 
-To learn more about Next.js, take a look at the following resources:
+For a steadier local demo build, use:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `cmd /c npm.cmd run demo`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Without env vars, the app still works in demo mode using:
 
-## Deploy on Vercel
+- in-memory guest sessions and check-in storage
+- heuristic insight and replay generation
+- in-memory voice-note blob serving at `/api/audio/[audioId]`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Optional production integrations
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Postgres + Drizzle
+
+Set `DATABASE_URL` to enable the Postgres-backed store and use:
+
+- `cmd /c npm.cmd run db:generate`
+
+### OpenAI
+
+Set:
+
+- `OPENAI_API_KEY`
+- `OPENAI_MODEL`
+- `OPENAI_AUDIO_MODEL`
+
+If these are not set, MOODDROP falls back to deterministic local heuristics for insight, replay, and transcription handling.
+
+### Supabase storage
+
+Set:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` or `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SECRET_KEY` or `SUPABASE_SERVICE_ROLE_KEY`
+- `SUPABASE_AUDIO_BUCKET`
+
+If these are not set, voice-note uploads stay in the in-memory demo blob store.
+
+## Verification
+
+- `cmd /c npm.cmd run lint`
+- `cmd /c npm.cmd run typecheck`
+- `cmd /c npm.cmd test`
+- `cmd /c npm.cmd run build`
