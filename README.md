@@ -13,6 +13,15 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/vibhuwolf/Mental-health-experimental-app/releases/tag/v0.1.0-mvp">
+    <img src="https://img.shields.io/badge/Open-Demo_Release-ff6a4d?style=for-the-badge" alt="Open demo release" />
+  </a>
+  <a href="https://github.com/vibhuwolf/Mental-health-experimental-app/releases/download/v0.1.0-mvp/mooddrop-testing-walkthrough.webm">
+    <img src="https://img.shields.io/badge/Download-Walkthrough_Video-1b1627?style=for-the-badge" alt="Download walkthrough video" />
+  </a>
+</p>
+
+<p align="center">
   <img src="./docs/assets/repo-landing.png" alt="MOODDROP landing page" />
 </p>
 
@@ -138,7 +147,9 @@ If these are missing, voice-note uploads stay in the in-memory demo blob store.
 
 ## Demo assets
 
-- A full walkthrough video is attached to the GitHub release for this MVP.
+- GitHub shows the walkthrough video as a downloadable release asset, not an inline player.
+- Open the release here: [MOODDROP MVP release](https://github.com/vibhuwolf/Mental-health-experimental-app/releases/tag/v0.1.0-mvp)
+- Download the video directly here: [mooddrop-testing-walkthrough.webm](https://github.com/vibhuwolf/Mental-health-experimental-app/releases/download/v0.1.0-mvp/mooddrop-testing-walkthrough.webm)
 - Fresh repo screenshots can be regenerated with `cmd /c npm.cmd run capture:repo-images`
 - The browser walkthrough can be regenerated with `cmd /c npm.cmd run record:walkthrough`
 
