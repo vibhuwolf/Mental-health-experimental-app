@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "demo": "npm run build && npm run start",
+    "capture:repo-images": "node scripts/capture-repo-images.mjs",
     "record:walkthrough": "node scripts/record-testing-walkthrough.mjs",
     "lint": "eslint .",
     "test": "vitest run",

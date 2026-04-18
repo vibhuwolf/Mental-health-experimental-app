@@ -1,48 +1,117 @@
 # MOODDROP
 
-MOODDROP is a mobile-first emotional intelligence MVP built for a hackathon demo. It lets users check in with mood, intensity, text, song context, and optional voice notes, then routes the input through a risk gate before returning either a warm reflective insight or a calmer spiral-mode support view.
+<p align="center">
+  <strong>A private emotional signal app for messy days, voice-note spirals, and clearer weekly patterns.</strong>
+</p>
 
-## What is in this MVP
+<p align="center">
+  <img src="https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=nextdotjs" alt="Next.js 16" />
+  <img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind-Custom_UI-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind" />
+  <img src="https://img.shields.io/badge/OpenAI-Ready-111827?style=for-the-badge&logo=openai&logoColor=white" alt="OpenAI ready" />
+  <img src="https://img.shields.io/badge/Supabase-Ready-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white" alt="Supabase ready" />
+</p>
+
+<p align="center">
+  <img src="./docs/assets/repo-landing.png" alt="MOODDROP landing page" />
+</p>
+
+MOODDROP is a mobile-first emotional intelligence MVP built for a polished hackathon demo. Users can check in with mood, intensity, a short note, optional song context, and optional voice notes. The app turns that into one useful signal, a gentler next step, and a weekly replay that stays supportive without pretending to be therapy.
+
+## Why it lands fast
+
+- `Start a 60-second check-in` is the main path, so first use feels obvious.
+- `Open calm mode` is always available when someone wants a simpler, lower-friction support screen.
+- Voice notes and song context stay optional instead of slowing down the default flow.
+- Weekly Mood Replay Studio turns raw drops into themes, emotional arcs, what helped, and exactly three therapy-prep bullets.
+
+## Product flow
+
+`Guest entry -> quick check-in -> risk gate -> insight or calm mode -> dashboard -> Mood Replay Studio`
+
+### One drop returns
+
+- one concise emotional read
+- one likely trigger
+- one micro-action
+- one reflection prompt
+
+### The weekly replay adds
+
+- emotional arc
+- top repeating triggers
+- what helped most
+- one celebration note
+- exactly 3 therapy-prep bullets
+- one privacy-safe share summary
+
+## Screens
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="./docs/assets/repo-check-in.png" alt="Quick check-in flow" />
+    </td>
+    <td width="50%">
+      <img src="./docs/assets/repo-insight.png" alt="Insight result screen" />
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="./docs/assets/repo-dashboard.png" alt="Private dashboard" />
+    </td>
+    <td width="50%">
+      <img src="./docs/assets/repo-replay.png" alt="Mood Replay Studio" />
+    </td>
+  </tr>
+</table>
+
+## Safety by design
+
+- MOODDROP always discloses that it is a supportive reflection tool, not a therapist, diagnosis engine, or emergency service.
+- Elevated-risk language routes to calm mode before normal reflective output.
+- Shared output is summary-only. Raw notes and voice transcripts stay private.
+- The copy layer blocks diagnosis claims, therapist claims, crisis-counseling claims, and emotionally dependent retention language.
+- Healthy re-engagement is insight-driven, not streak-driven.
+
+## Current MVP features
 
 - Guest-session entry with secure cookie-backed private spaces
-- Daily check-in flow with mood tap, intensity, text, song context, and in-browser voice-note recording
-- Fast first-use flow with a 60-second quick check-in as the default path
+- Quick check-in with mood, intensity, optional note, optional song, and optional voice note
 - Conservative risk classification before normal insight generation
-- Dedicated spiral mode screen for elevated-risk or direct spiral entry
-- Weekly Mood Replay Studio with emotional arcs, themes, triggers, what helped, celebration note, a share-safe summary, and exactly 3 therapy-prep bullets
-- Dashboard with recent drops, latest insight snapshot, replay preview, and neutral consistency framing
+- Dedicated calm mode for direct entry or elevated-risk routing
+- Dashboard with recent drops, latest signal, and neutral re-engagement framing
+- Mood Replay Studio with replay summary and therapy-prep bullets
 - Privacy-safe share summaries for insights and replay outputs
 - Typed service layer, Zod validation, Drizzle schema, and optional OpenAI + Supabase integrations
 
-## Safety defaults
+## Stack
 
-- MOODDROP always discloses that it is a supportive reflection tool, not a therapist, diagnosis engine, or emergency service
-- Elevated-risk language routes to spiral mode before casual reflective output
-- The copy layer blocks therapist claims, diagnosis claims, crisis-counseling claims, and dependency-forming language
-- Healthy re-engagement is insight-driven, not streak-driven
+- Next.js App Router
+- TypeScript
+- Tailwind CSS
+- Zod
+- Drizzle ORM
+- Supabase-ready storage + session helpers
+- OpenAI-ready generation + transcription layer
+- Vitest
+- Playwright for demo media capture
 
 ## Local run
 
 1. Install dependencies: `cmd /c npm.cmd install`
-2. Copy `.env.example` to `.env.local` if you want production integrations
-3. Start the app: `cmd /c npm.cmd run dev`
-4. Open `http://localhost:3000`
+2. Copy `.env.example` to `.env.local` if you want production integrations.
+3. Start a live dev session with `cmd /c npm.cmd run dev`
+4. For the steadiest local demo flow, use `cmd /c npm.cmd run demo`
+5. Open `http://localhost:3000`
 
-For a steadier local demo build, use:
+Without env vars, the app still works in demo mode using in-memory sessions, check-in storage, replay generation, and voice-note blob serving.
 
-- `cmd /c npm.cmd run demo`
-
-Without env vars, the app still works in demo mode using:
-
-- in-memory guest sessions and check-in storage
-- heuristic insight and replay generation
-- in-memory voice-note blob serving at `/api/audio/[audioId]`
-
-## Optional production integrations
+## Optional integrations
 
 ### Postgres + Drizzle
 
-Set `DATABASE_URL` to enable the Postgres-backed store and use:
+Set `DATABASE_URL`, then use:
 
 - `cmd /c npm.cmd run db:generate`
 
@@ -54,7 +123,7 @@ Set:
 - `OPENAI_MODEL`
 - `OPENAI_AUDIO_MODEL`
 
-If these are not set, MOODDROP falls back to deterministic local heuristics for insight, replay, and transcription handling.
+If these are missing, MOODDROP falls back to deterministic local heuristics for insight, replay, and transcription handling.
 
 ### Supabase storage
 
@@ -65,7 +134,13 @@ Set:
 - `SUPABASE_SECRET_KEY` or `SUPABASE_SERVICE_ROLE_KEY`
 - `SUPABASE_AUDIO_BUCKET`
 
-If these are not set, voice-note uploads stay in the in-memory demo blob store.
+If these are missing, voice-note uploads stay in the in-memory demo blob store.
+
+## Demo assets
+
+- A full walkthrough video is attached to the GitHub release for this MVP.
+- Fresh repo screenshots can be regenerated with `cmd /c npm.cmd run capture:repo-images`
+- The browser walkthrough can be regenerated with `cmd /c npm.cmd run record:walkthrough`
 
 ## Verification
 
